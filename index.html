@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Valorant Training Routine</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #007bff, #dc3545);
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+        max-width: 800px;
+        margin: 20px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .task {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        transition: transform 0.3s;
+    }
+
+    .task:hover {
+        transform: scale(1.05);
+    }
+
+    .timer-container {
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .timer {
+        text-align: center;
+        font-size: 16px;
+        color: #ffffff;
+        cursor: pointer;
+        margin-right: 5px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border: none;
+        outline: none;
+        transition: background-color 0.3s;
+    }
+
+    .timer:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+</style>
+</head>
+<body>
+    <audio id="timerSound">
+        <source src="beep.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div class="content">
+        <h1>My Valorant Training Routine</h1>
+        <div class="task">
+            <h2>Warm-up (15-20 minutes):</h2>
+            <div class="timer-container">
+                <button id="startWarmup" class="timer">Start</button>
+                <button id="pauseWarmup" class="timer">Pause</button>
+                <button id="stopWarmup" class="timer">Stop</button>
+                <div id="warmupTimer" class="timer">Click Start to begin</div>
+            </div>
+            <ul>
+                <li>Spend 5-10 minutes in Aim Lab for aim training (Gridshot Ultimate, Microshot Speed, Strafetrack Precision).</li>
+                <li>Spend 5-10 minutes in the Valorant practice range practicing your aim, movement, and abilities.</li>
+            </ul>
+        </div>
+        <div class="task">
+            <h2>Map Knowledge (10 minutes):</h2>
+            <div class="timer-container">
+                <button id="startMapKnowledge" class="timer">Start</button>
+                <button id="pauseMapKnowledge" class="timer">Pause</button>
+                <button id="stopMapKnowledge" class="timer">Stop</button>
+                <div id="mapKnowledgeTimer" class="timer">Click Start to begin</div>
+            </div>
+            <ul>
+                <li>Study a map of Valorant (e.g., Bind, Icebox, Split, Breeze, Sunset, Lotus or Ascent) to improve your knowledge of callouts, common spots, and angles.</li>
+            </ul>
+        </div>
+        <div class="task">
+            <h2>Watch Pro Matches or Guides (15-30 minutes):</h2>
+            <div class="timer-container">
+                <button id="startWatchMatches" class="timer">Start</button>
+                <button id="pauseWatchMatches" class="timer">Pause</button>
+                <button id="stopWatchMatches" class="timer">Stop</button>
+                <div id="watchMatchesTimer" class="timer">Click Start to begin</div>
+            </div>
+            <ul>
+                <li>Watch professional Valorant matches or guides to learn strategies, agent tactics, and map control.</li>
+            </ul>
+        </div>
+        <div class="task">
+            <h2>Gameplay (1-2 hours):</h2>
+            <div class="timer-container">
+                <button id="startGameplay" class="timer">Start</button>
+                <button id="pauseGameplay" class="timer">Pause</button>
+                <button id="stopGameplay" class="timer">Stop</button>
+                <div id="gameplayTimer" class="timer">Click Start to begin</div>
+            </div>
+            <ul>
+                <li>Play Valorant matches, focusing on applying what you've learned from your warm-up and study sessions.</li>
+                <li>Focus on communication, teamwork, and adapting to different situations.</li>
+            </ul>
+        </div>
+        <div class="task">
+            <h2>Review (15-30 minutes):</h2>
+            <div class="timer-container">
+                <button id="startReview" class="timer">Start</button>
+                <button id="pauseReview" class="timer">Pause</button>
+                <button id="stopReview" class="timer">Stop</button>
+                <div id="reviewTimer" class="timer">Click Start to begin</div>
+            </div>
+            <ul>
+                <li>After playing, review your matches (if possible) to analyze your performance, mistakes, and areas for improvement.</li>
+                <li>Identify patterns in your gameplay and make notes for future practice.</li>
+            </ul>
+        </div>
+        <div class="task">
+            <h2>Cooldown (10-15 minutes):</h2>
+            <div class="timer-container">
+                <button id="startCooldown" class="timer">Start</button>
+                <button id="pauseCooldown" class="timer">Pause</button>
+                <button id="stopCooldown" class="timer">Stop</button>
+                <div id="cooldownTimer" class="timer">Click Start to begin</div>
+            </div>
+            <ul>
+                <li>Play a few relaxing matches or modes to unwind.</li>
+                <li>Reflect on your gameplay and think about what you did well and what you can improve.</li>
+            </ul>
+        </div>
+        <div class="task">
+            <h2>Physical Exercise (30 minutes):</h2>
+            <div class="timer-container">
+                <button id="startExercise" class="timer">Start</button>
+                <button id="pauseExercise" class="timer">Pause</button>
+                <button id="stopExercise" class="timer">Stop</button>
+                <div id="exerciseTimer" class="timer">Click Start to begin</div>
+            </div>
+            <ul>
+                <li>Engage in physical exercise to improve your overall health and well-being, which can positively impact your gaming performance.</li>
+            </ul>
+        </div>
+        <div class="task">
+            <h2>Rest and Recovery:</h2>
+            <ul>
+                <li>Ensure you get enough rest between gaming sessions to avoid burnout and allow your body and mind to recover.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let warmupTimerInterval;
+let mapKnowledgeTimerInterval;
+let watchMatchesTimerInterval;
+let gameplayTimerInterval;
+let reviewTimerInterval;
+let cooldownTimerInterval;
+let exerciseTimerInterval;
+
+function startTimer(timerId, intervalVar) {
+    let time = 0;
+    return setInterval(() => {
+        const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+        const seconds = (time % 60).toString().padStart(2, '0');
+        document.getElementById(timerId).textContent = `${minutes}:${seconds}`;
+        if (time === 0) {
+            document.getElementById('timerSound').play(); // Play the sound
+        }
+        time++;
+    }, 1000);
+}
+
+
+
+function pauseTimer(intervalVar) {
+    clearInterval(intervalVar);
+}
+
+function stopTimer(intervalVar, timerId) {
+    clearInterval(intervalVar);
+    document.getElementById(timerId).textContent = "Click Start to begin";
+}
+
+document.getElementById("startWarmup").addEventListener("click", () => {
+    warmupTimerInterval = startTimer("warmupTimer", warmupTimerInterval);
+});
+document.getElementById("pauseWarmup").addEventListener("click", () => {
+    pauseTimer(warmupTimerInterval);
+});
+document.getElementById("stopWarmup").addEventListener("click", () => {
+    stopTimer(warmupTimerInterval, "warmupTimer");
+});
+
+document.getElementById("startMapKnowledge").addEventListener("click", () => {
+    mapKnowledgeTimerInterval = startTimer("mapKnowledgeTimer", mapKnowledgeTimerInterval);
+});
+document.getElementById("pauseMapKnowledge").addEventListener("click", () => {
+    pauseTimer(mapKnowledgeTimerInterval);
+});
+document.getElementById("stopMapKnowledge").addEventListener("click", () => {
+    stopTimer(mapKnowledgeTimerInterval, "mapKnowledgeTimer");
+});
+
+document.getElementById("startWatchMatches").addEventListener("click", () => {
+    watchMatchesTimerInterval = startTimer("watchMatchesTimer", watchMatchesTimerInterval);
+});
+document.getElementById("pauseWatchMatches").addEventListener("click", () => {
+    pauseTimer(watchMatchesTimerInterval);
+});
+document.getElementById("stopWatchMatches").addEventListener("click", () => {
+    stopTimer(watchMatchesTimerInterval, "watchMatchesTimer");
+});
+
+document.getElementById("startGameplay").addEventListener("click", () => {
+    gameplayTimerInterval = startTimer("gameplayTimer", gameplayTimerInterval);
+});
+document.getElementById("pauseGameplay").addEventListener("click", () => {
+    pauseTimer(gameplayTimerInterval);
+});
+document.getElementById("stopGameplay").addEventListener("click", () => {
+    stopTimer(gameplayTimerInterval, "gameplayTimer");
+});
+
+document.getElementById("startReview").addEventListener("click", () => {
+    reviewTimerInterval = startTimer("reviewTimer", reviewTimerInterval);
+});
+document.getElementById("pauseReview").addEventListener("click", () => {
+    pauseTimer(reviewTimerInterval);
+});
+document.getElementById("stopReview").addEventListener("click", () => {
+    stopTimer(reviewTimerInterval, "reviewTimer");
+});
+
+document.getElementById("startCooldown").addEventListener("click", () => {
+    cooldownTimerInterval = startTimer("cooldownTimer", cooldownTimerInterval);
+});
+document.getElementById("pauseCooldown").addEventListener("click", () => {
+    pauseTimer(cooldownTimerInterval);
+});
+document.getElementById("stopCooldown").addEventListener("click", () => {
+    stopTimer(cooldownTimerInterval, "cooldownTimer");
+});
+
+document.getElementById("startExercise").addEventListener("click", () => {
+    exerciseTimerInterval = startTimer("exerciseTimer", exerciseTimerInterval);
+});
+document.getElementById("pauseExercise").addEventListener("click", () => {
+    pauseTimer(exerciseTimerInterval);
+});
+document.getElementById("stopExercise").addEventListener("click", () => {
+    stopTimer(exerciseTimerInterval, "exerciseTimer");
+});
+
+
+    </script>
+</body>
+</html>
