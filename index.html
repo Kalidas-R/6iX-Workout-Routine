@@ -1,303 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>6iX Valorant Routine</title>
-<style>
-    a:link {
-  color: green;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:visited {
-  color: pink;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color: red;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-a:active {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(135deg, #007bff, #dc3545);
-        color: #ffffff;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .content {
-        max-width: 800px;
-        margin: 20px;
-        padding: 20px;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .task {
-        margin-bottom: 20px;
-        padding: 10px;
-        border-radius: 5px;
-        transition: transform 0.3s;
-    }
-
-    .task:hover {
-        transform: scale(1.05);
-    }
-
-    .timer-container {
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .timer {
-        text-align: center;
-        font-size: 16px;
-        color: #ffffff;
-        cursor: pointer;
-        margin-right: 5px;
-        padding: 5px 10px;
-        border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.3);
-        border: none;
-        outline: none;
-        transition: background-color 0.3s;
-    }
-
-    .timer:hover {
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    ul {
-        padding-left: 20px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Track your weekly workout plan with this interactive workout tracker.">
+    <title>Workout Tracker</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <audio id="timerSound">
-        <source src="beep.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
     
-    <div class="content">
-        <h1>6iX Valorant Routine</h1>
-        <div class="task">
-            <h2>Warm-up (15-20 minutes):</h2>
-            <div class="timer-container">
-                <button id="startWarmup" class="timer">Start</button>
-                <button id="pauseWarmup" class="timer">Pause</button>
-                <button id="stopWarmup" class="timer">Stop</button>
-                <div id="warmupTimer" class="timer">Click Start to begin</div>
-            </div>
-            <ul>
-                <li>Spend 5-10 minutes in Aim Lab for aim training (Gridshot Ultimate, Microshot Speed, Strafetrack Precision).</li>
-                <li>Spend 5-10 minutes in the Valorant practice range practicing your aim, movement, and abilities.</li>
-                <li><a href="https://go.aimlab.gg/v1/redirects?link=aimlab%3a%2f%2fworkshop%3fid%3d0%26source%3dF1A857049CB42AFF&link=steam%3a%2f%2frungameid%2f714010" <a href="https://www.google.com" target="_blank">30 minutes Aim labs Routine Click Me</a></li>
-            </ul>
+    
+
+    <!-- Log Page Section -->
+    <section id="log-section" class="page">
+        <h1>Workout Logs</h1>
+        <ul id="log-list"></ul>
+    </section>
+    <header>
+        <div class="toggle-container">
+            <label class="switch" aria-label="Toggle Dark Mode">
+                <input type="checkbox" id="theme-toggle" onclick="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+            <span class="toggle-label">Dark Mode</span>
         </div>
-        <div class="task">
-            <h2>Map Knowledge (10 minutes):</h2>
-            <div class="timer-container">
-                <button id="startMapKnowledge" class="timer">Start</button>
-                <button id="pauseMapKnowledge" class="timer">Pause</button>
-                <button id="stopMapKnowledge" class="timer">Stop</button>
-                <div id="mapKnowledgeTimer" class="timer">Click Start to begin</div>
-            </div>
-            <ul>
-                <li>Study a map of Valorant (e.g., Bind, Icebox, Split, Breeze, Sunset, Lotus or Ascent) to improve your knowledge of callouts, common spots, and angles.</li>
+        <h1 class="title">Workout Tracker</h1>
+    </header>
+
+    <main>
+        <section id="workout-plan">
+            <h2 class="subtitle">Weekly Workout Plan</h2>
+
+            <!-- Workout Day Sections -->
+            <article id="day1" class="day light-bg" aria-labelledby="day1-title">
+                <h3 id="day1-title">Day 1: Chest and Triceps</h3>
+                <ul>
+                    <li>
+                        <strong>Barbell Bench Press</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 6-8</span>
+                            <span class="detail-box">Rest: 90 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Incline Dumbbell Press</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 90 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Cable Chest Fly</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 10-12</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Triceps Dips</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Triceps Pushdown</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 10-12</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                </ul>
+            </article>
+
+            <article id="day2" class="day light-bg" aria-labelledby="day2-title">
+                <h3 id="day2-title">Day 2: Back and Biceps</h3>
+                <ul>
+                    <li>
+                        <strong>Deadlifts</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 5-6</span>
+                            <span class="detail-box">Rest: 120-180 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Pull-ups</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 6-8</span>
+                            <span class="detail-box">Rest: 90 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Barbell Row</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 90 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Barbell Curl</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Hammer Curl</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 10-12</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                </ul>
+            </article>
+
+            <article id="day3" class="day light-bg" aria-labelledby="day3-title">
+                <h3 id="day3-title">Day 3: Shoulders</h3>
+                <ul>
+                    <li>
+                        <strong>Overhead Press</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 6-8</span>
+                            <span class="detail-box">Rest: 90 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Lateral Raises</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 10-12</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Face Pulls</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 10-12</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Front Raises</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 10-12</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Arnold Press</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 90 seconds</span>
+                        </div>
+                    </li>
+                </ul>
+            </article>
+
+            <article id="day4" class="day light-bg" aria-labelledby="day4-title">
+                <h3 id="day4-title">Day 4: Triceps</h3>
+                <ul>
+                    <li>
+                        <strong>Close-Grip Bench Press</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 6-8</span>
+                            <span class="detail-box">Rest: 90 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Skull Crushers</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 90 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Overhead Triceps Extension</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 10-12</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Diamond Push-ups</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                </ul>
+            </article>
+
+            <article id="day5" class="day light-bg" aria-labelledby="day5-title">
+                <h3 id="day5-title">Day 5: Biceps</h3>
+                <ul>
+                    <li>
+                        <strong>Concentration Curl</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>EZ Bar Curl</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Cable Curl</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 10-12</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Preacher Curl</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                </ul>
+            </article>
+
+            <article id="day6" class="day light-bg" aria-labelledby="day6-title">
+                <h3 id="day6-title">Day 6: Legs, Glutes, and Hamstrings</h3>
+                <ul>
+                    <li>
+                        <strong>Squats</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 6-8</span>
+                            <span class="detail-box">Rest: 120 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Romanian Deadlift</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 4</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 120 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Bulgarian Split Squat</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 8-10</span>
+                            <span class="detail-box">Rest: 90 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Leg Curls</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 10-12</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Glute Bridge</strong>
+                        <div class="details">
+                            <span class="detail-box">Sets: 3</span>
+                            <span class="detail-box">Reps: 10-12</span>
+                            <span class="detail-box">Rest: 60 seconds</span>
+                        </div>
+                    </li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="exercise-log">
+            <h2 class="subtitle">Custom Exercise Log</h2>
+            <form id="exercise-form" aria-label="Log Custom Exercise">
+                <label for="exercise">Exercise:</label>
+                <input type="text" id="exercise" name="exercise" required>
+                
+                <label for="sets">Sets:</label>
+                <input type="number" id="sets" name="sets" required>
+
+                <label for="reps">Reps:</label>
+                <input type="number" id="reps" name="reps" required>
+
+                <label for="weight">Weight (lbs):</label>
+                <input type="number" id="weight" name="weight" required>
+
+                <button type="submit">Log Exercise</button>
+            </form>
+
+            <ul id="log-list" aria-live="polite">
+                <!-- Logged exercises will appear here -->
             </ul>
-        </div>
-        <div class="task">
-            <h2>Watch Pro Matches or Guides (15-30 minutes):</h2>
-            <div class="timer-container">
-                <button id="startWatchMatches" class="timer">Start</button>
-                <button id="pauseWatchMatches" class="timer">Pause</button>
-                <button id="stopWatchMatches" class="timer">Stop</button>
-                <div id="watchMatchesTimer" class="timer">Click Start to begin</div>
-            </div>
-            <ul>
-                <li>Watch professional Valorant matches or guides to learn strategies, agent tactics, and map control.</li>
-            </ul>
-        </div>
-        <div class="task">
-            <h2>Gameplay (1-2 hours):</h2>
-            <div class="timer-container">
-                <button id="startGameplay" class="timer">Start</button>
-                <button id="pauseGameplay" class="timer">Pause</button>
-                <button id="stopGameplay" class="timer">Stop</button>
-                <div id="gameplayTimer" class="timer">Click Start to begin</div>
-            </div>
-            <ul>
-                <li>Play Valorant matches, focusing on applying what you've learned from your warm-up and study sessions.</li>
-                <li>Focus on communication, teamwork, and adapting to different situations.</li>
-            </ul>
-        </div>
-        <div class="task">
-            <h2>Review (15-30 minutes):</h2>
-            <div class="timer-container">
-                <button id="startReview" class="timer">Start</button>
-                <button id="pauseReview" class="timer">Pause</button>
-                <button id="stopReview" class="timer">Stop</button>
-                <div id="reviewTimer" class="timer">Click Start to begin</div>
-            </div>
-            <ul>
-                <li>After playing, review your matches (if possible) to analyze your performance, mistakes, and areas for improvement.</li>
-                <li>Identify patterns in your gameplay and make notes for future practice.</li>
-            </ul>
-        </div>
-        <div class="task">
-            <h2>Cooldown (10-15 minutes):</h2>
-            <div class="timer-container">
-                <button id="startCooldown" class="timer">Start</button>
-                <button id="pauseCooldown" class="timer">Pause</button>
-                <button id="stopCooldown" class="timer">Stop</button>
-                <div id="cooldownTimer" class="timer">Click Start to begin</div>
-            </div>
-            <ul>
-                <li>Play a few relaxing matches or modes to unwind.</li>
-                <li>Reflect on your gameplay and think about what you did well and what you can improve.</li>
-            </ul>
-        </div>
-        <div class="task">
-            <h2>Physical Exercise (30 minutes):</h2>
-            <div class="timer-container">
-                <button id="startExercise" class="timer">Start</button>
-                <button id="pauseExercise" class="timer">Pause</button>
-                <button id="stopExercise" class="timer">Stop</button>
-                <div id="exerciseTimer" class="timer">Click Start to begin</div>
-            </div>
-            <ul>
-                <li>Engage in physical exercise to improve your overall health and well-being, which can positively impact your gaming performance.</li>
-            </ul>
-        </div>
-        <div class="task">
-            <h2>Rest and Recovery:</h2>
-            <ul>
-                <li>Ensure you get enough rest between gaming sessions to avoid burnout and allow your body and mind to recover.</li>
-            </ul>
-        </div>
-    </div>
+        </section>
+    </main>
 
-    <script>
-        let warmupTimerInterval;
-let mapKnowledgeTimerInterval;
-let watchMatchesTimerInterval;
-let gameplayTimerInterval;
-let reviewTimerInterval;
-let cooldownTimerInterval;
-let exerciseTimerInterval;
+    <footer>
+        <p>© 2024 Workout Tracker. All rights reserved.</p>
+    </footer>
 
-function startTimer(timerId, intervalVar) {
-    let time = 0;
-    return setInterval(() => {
-        const minutes = Math.floor(time / 60).toString().padStart(2, '0');
-        const seconds = (time % 60).toString().padStart(2, '0');
-        document.getElementById(timerId).textContent = `${minutes}:${seconds}`;
-        if (time === 0) {
-            document.getElementById('timerSound').play(); // Play the sound
-        }
-        time++;
-    }, 1000);
-}
-
-
-
-function pauseTimer(intervalVar) {
-    clearInterval(intervalVar);
-}
-
-function stopTimer(intervalVar, timerId) {
-    clearInterval(intervalVar);
-    document.getElementById(timerId).textContent = "Click Start to begin";
-}
-
-document.getElementById("startWarmup").addEventListener("click", () => {
-    warmupTimerInterval = startTimer("warmupTimer", warmupTimerInterval);
-});
-document.getElementById("pauseWarmup").addEventListener("click", () => {
-    pauseTimer(warmupTimerInterval);
-});
-document.getElementById("stopWarmup").addEventListener("click", () => {
-    stopTimer(warmupTimerInterval, "warmupTimer");
-});
-
-document.getElementById("startMapKnowledge").addEventListener("click", () => {
-    mapKnowledgeTimerInterval = startTimer("mapKnowledgeTimer", mapKnowledgeTimerInterval);
-});
-document.getElementById("pauseMapKnowledge").addEventListener("click", () => {
-    pauseTimer(mapKnowledgeTimerInterval);
-});
-document.getElementById("stopMapKnowledge").addEventListener("click", () => {
-    stopTimer(mapKnowledgeTimerInterval, "mapKnowledgeTimer");
-});
-
-document.getElementById("startWatchMatches").addEventListener("click", () => {
-    watchMatchesTimerInterval = startTimer("watchMatchesTimer", watchMatchesTimerInterval);
-});
-document.getElementById("pauseWatchMatches").addEventListener("click", () => {
-    pauseTimer(watchMatchesTimerInterval);
-});
-document.getElementById("stopWatchMatches").addEventListener("click", () => {
-    stopTimer(watchMatchesTimerInterval, "watchMatchesTimer");
-});
-
-document.getElementById("startGameplay").addEventListener("click", () => {
-    gameplayTimerInterval = startTimer("gameplayTimer", gameplayTimerInterval);
-});
-document.getElementById("pauseGameplay").addEventListener("click", () => {
-    pauseTimer(gameplayTimerInterval);
-});
-document.getElementById("stopGameplay").addEventListener("click", () => {
-    stopTimer(gameplayTimerInterval, "gameplayTimer");
-});
-
-document.getElementById("startReview").addEventListener("click", () => {
-    reviewTimerInterval = startTimer("reviewTimer", reviewTimerInterval);
-});
-document.getElementById("pauseReview").addEventListener("click", () => {
-    pauseTimer(reviewTimerInterval);
-});
-document.getElementById("stopReview").addEventListener("click", () => {
-    stopTimer(reviewTimerInterval, "reviewTimer");
-});
-
-document.getElementById("startCooldown").addEventListener("click", () => {
-    cooldownTimerInterval = startTimer("cooldownTimer", cooldownTimerInterval);
-});
-document.getElementById("pauseCooldown").addEventListener("click", () => {
-    pauseTimer(cooldownTimerInterval);
-});
-document.getElementById("stopCooldown").addEventListener("click", () => {
-    stopTimer(cooldownTimerInterval, "cooldownTimer");
-});
-
-document.getElementById("startExercise").addEventListener("click", () => {
-    exerciseTimerInterval = startTimer("exerciseTimer", exerciseTimerInterval);
-});
-document.getElementById("pauseExercise").addEventListener("click", () => {
-    pauseTimer(exerciseTimerInterval);
-});
-document.getElementById("stopExercise").addEventListener("click", () => {
-    stopTimer(exerciseTimerInterval, "exerciseTimer");
-});
-
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
