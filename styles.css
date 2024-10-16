@@ -1,104 +1,59 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #fff;
     margin: 0;
+    background-color: black;
+    color: white;
 }
 
 header {
-    background-color: #f00;
-    padding: 20px;
+    background-color: red;
+    padding: 15px;
     text-align: center;
-}
-
-h1 {
-    margin: 0;
-}
-
-.update-message {
-    font-size: 1.2em;
-    margin-top: 10px;
 }
 
 .menu-icon {
     cursor: pointer;
-    font-size: 2em;
+    font-size: 24px;
+    float: right;
 }
 
-aside {
+#sidebar {
+    background-color: #333;
     width: 250px;
     height: 100%;
-    background-color: #333;
     position: fixed;
     left: -250px; /* Hide sidebar */
-    transition: left 0.3s;
-    z-index: 1000;
+    transition: left 0.3s ease;
 }
 
-aside.open {
+#sidebar.open {
     left: 0; /* Show sidebar */
 }
 
-nav ul {
-    list-style-type: none;
+#sidebar ul {
+    list-style: none;
     padding: 0;
 }
 
-nav ul li {
+#sidebar ul li {
     padding: 15px;
 }
 
-nav ul li a {
+#sidebar ul li a {
     color: white;
     text-decoration: none;
-    display: block;
 }
 
-nav ul li a:hover {
-    background-color: #444;
-}
-
-.content {
-    margin-left: 20px;
+#workout-container {
+    margin-left: 260px; /* Space for sidebar */
     padding: 20px;
 }
 
 footer {
-    background-color: #f00;
+    background-color: #222;
     text-align: center;
     padding: 10px;
     position: fixed;
     bottom: 0;
     width: 100%;
-}
-
-.lightbox {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8);
-}
-
-.lightbox-img {
-    max-width: 90%;
-    max-height: 80%;
-    margin: auto;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.close {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
 }
