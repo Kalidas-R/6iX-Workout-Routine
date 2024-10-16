@@ -3,33 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalisthenics App - Update 2.0</title>
+    <title>Kalistenics Workout Plan</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Kalisthenics Workout</h1>
-        <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+        <h1>Welcome to Kalistenics</h1>
+        <nav>
+            <ul>
+                <li><a href="push.html">Push Day</a></li>
+                <li><a href="pull.html">Pull Day</a></li>
+                <li><a href="legs.html">Leg Day</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <aside id="sidebar">
-        <ul>
-            <li><a href="#" onclick="loadWorkout('push')">Push Day</a></li>
-            <li><a href="#" onclick="loadWorkout('pull')">Pull Day</a></li>
-            <li><a href="#" onclick="loadWorkout('legs')">Leg Day</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-        </ul>
-    </aside>
+    <main>
+        <h2>Your Weekly Workout Plan</h2>
+        <section>
+            <h3>Monday & Thursday – Push Day</h3>
+            <ul>
+                <li>Decline Push-Ups – 4 Sets of 10-12</li>
+                <li>Body Weight Dips – 4 Sets of 8-10</li>
+                <li>Hindu Push-Ups – 3 Sets of 8-10</li>
+                <li>Diamond Push-Ups – 3 Sets of 10-12</li>
+                <li>Pike Push-Ups – 4 Sets of 8-10</li>
+                <li>Pseudo Planche Lean – 3 Sets of 10 Seconds</li>
+                <li>Side Plank – 3 Sets of 30 Seconds (Each side)</li>
+                <li>Wall Handstand Hold – 3 Sets of 20-30 Seconds</li>
+                <li>Hollow Body Hold – 3 Sets of Max Hold</li>
+            </ul>
+        </section>
 
-    <main id="workout-container">
-        <h2>Select a Workout Day</h2>
-        <p>Click on a day in the sidebar to see exercises.</p>
+        <section>
+            <h3>Tuesday & Saturday – Pull Day</h3>
+            <ul>
+                <li>Scapular Pull-Ups – 3 Sets of 8</li>
+                <li>Hollow Body Hang – 2 Sets of 30 Seconds</li>
+                <li>Front Lever Raise – 3 Sets of 5</li>
+                <li>Body Weight Rows – 4 Sets of 8-10</li>
+                <li>Pull-Ups – 3 Sets to Failure</li>
+                <li>Hanging Leg Raises – 3 Sets of 15</li>
+                <li>Crunches – 3 Sets of 15</li>
+                <li>Russian Twists – 3 Sets of 20</li>
+                <li>Plank – 3 Sets of 45-60 Seconds</li>
+                <li>Bicycle Crunches – 3 Sets of 20</li>
+                <li>Flutter Kicks – 3 Sets of 30-40 Seconds</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Wednesday & Sunday – Legs</h3>
+            <ul>
+                <li>Body Weight Squats – 4 Sets of 12-15</li>
+                <li>Bulgarian Split Squat – 4 Sets of 8-10</li>
+                <li>Horse Stance – 1 Set of 40 Seconds</li>
+                <li>Calf Raises – 4 Sets of 15-20</li>
+                <li>Single Leg Squats – 2 Sets of 4-6</li>
+                <li>Combat Leg Lifts – 3 Sets of 8</li>
+                <li>Hollow Body Hold – 3 Sets of Max Hold</li>
+                <li>Single Leg Planks – 2 Sets of 30 Seconds</li>
+            </ul>
+        </section>
     </main>
 
     <footer>
         <p>© 2024 Kalistenics</p>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
