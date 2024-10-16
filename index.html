@@ -3,48 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Tracker - Version 2.0</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Kalisthenics App - Update 2.0</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>My Fitness Tracker</h1>
-        <div class="update-message">Update 2.0 - Stay tuned for more features!</div>
-        <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
+        <h1>Kalisthenics Workout</h1>
+        <div class="menu-icon" onclick="toggleSidebar()">☰</div>
     </header>
 
     <aside id="sidebar">
-        <nav>
-            <ul>
-                <li><a href="#" onclick="goBack()">Go Back</a></li>
-                <li><a href="#" onclick="openTimer('Decline Push-Ups', 4, '10-12')">Decline Push-Ups</a></li>
-                <li><a href="#" onclick="openTimer('Body Weight Dips', 4, '8-10')">Body Weight Dips</a></li>
-                <li><a href="#" onclick="openTimer('Hindu Push-Ups', 3, '8-10')">Hindu Push-Ups</a></li>
-                <li><a href="#" onclick="openTimer('Diamond Push-Ups', 3, '10-12')">Diamond Push-Ups</a></li>
-                <li><a href="#" onclick="openTimer('Pike Push-Ups', 4, '8-10')">Pike Push-Ups</a></li>
-                <li><a href="#" onclick="openTimer('Pseudo Planche Lean', 3, '10 seconds')">Pseudo Planche Lean</a></li>
-                <li><a href="#" onclick="openTimer('Side Plank', 3, '30 seconds')">Side Plank</a></li>
-                <li><a href="#" onclick="openTimer('Wall Handstand Hold', 3, '20-30 seconds')">Wall Handstand Hold</a></li>
-                <li><a href="#" onclick="openTimer('Hollow Body Hold', 3, 'Max')">Hollow Body Hold</a></li>
-                <li><a href="#" onclick="toggleSidebar()">Close Menu</a></li>
-            </ul>
-        </nav>
+        <ul>
+            <li><a href="#" onclick="loadWorkout('push')">Push Day</a></li>
+            <li><a href="#" onclick="loadWorkout('pull')">Pull Day</a></li>
+            <li><a href="#" onclick="loadWorkout('legs')">Leg Day</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
     </aside>
 
-    <div class="content">
-        <h2>Workout Plan</h2>
-        <p>Click on an exercise to start the timer!</p>
-    </div>
+    <main id="workout-container">
+        <h2>Select a Workout Day</h2>
+        <p>Click on a day in the sidebar to see exercises.</p>
+    </main>
 
     <footer>
         <p>© 2024 Kalistenics</p>
     </footer>
-
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close">&times;</span>
-        <img class="lightbox-img" id="lightbox-img">
-        <div id="caption"></div>
-    </div>
 
     <script src="script.js"></script>
 </body>
