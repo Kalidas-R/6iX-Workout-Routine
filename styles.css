@@ -1,0 +1,126 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #b71c1c; /* Darker red */
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 3px solid #880e0e; /* Darker red border */
+}
+
+.logo h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #ddd;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+#workout-days {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #e53935;
+}
+
+.day {
+    background-color: #222;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 1.3rem;
+}
+
+.day:hover {
+    background-color: #b71c1c; /* Darker red for hover */
+    transform: scale(1.05);
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #222; /* Darker color for better appearance */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.nav-icon {
+    color: #fff;
+    text-align: center;
+    flex: 1;
+    text-decoration: none; /* No underline */
+}
+
+.nav-icon i {
+    font-size: 2rem; /* Larger icon size */
+}
+
+.nav-icon:hover {
+    color: #b71c1c; /* Change color on hover */
+}
+
+/* Spinner styles */
+.spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ddd;
+    border-top: 5px solid #b71c1c; /* Darker red */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%); /* Center the spinner */
+    z-index: 1002; /* Ensure it is above other elements */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .day {
+        font-size: 1.1rem; /* Smaller text for smaller screens */
+        padding: 15px;
+    }
+
+    header {
+        padding: 20px 10px; /* Less padding on smaller screens */
+    }
+
+    .tagline {
+        font-size: 1rem; /* Smaller tagline */
+    }
+}

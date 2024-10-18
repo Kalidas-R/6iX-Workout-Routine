@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pull Day Workout</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Basic styles for the workout page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .exercise-container {
+            border: 2px solid #1e88e5;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #222;
+        }
+        h2 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        .sets-reps {
+            font-size: 1.5rem;
+            margin: 15px 0;
+        }
+        .note {
+            font-size: 1rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            margin: 5px; /* Margin for spacing between buttons */
+        }
+        .button:hover {
+            background-color: #1565c0;
+        }
+        .back-button {
+            margin-top: 20px;
+            display: inline-block;
+        }
+        /* Styles for the finish pop-up */
+        .finish-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 2px solid #1e88e5;
+            border-radius: 10px;
+            padding: 20px;
+            z-index: 1000;
+        }
+        .finish-popup h2 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        .finish-popup button {
+            margin-top: 10px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="exercise-container">
+        <h2 id="exercise-name">Scapular Pull-Ups</h2>
+        <div class="sets-reps" id="sets-reps">Sets: 3, Reps: 8</div>
+        <div class="note" id="exercise-note">Focus: Activates scapular muscles, improving control and back engagement for pull-ups and other back exercises.</div>
+        <button class="button" id="prev-button" style="display: none;">Previous</button>
+        <button class="button" id="next-button">Next</button>
+        <button class="button" id="finish-button" style="display: none;">Finish</button>
+        <a href="index.html" class="back-button"><button class="button">Back to Home</button></a>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="finish-popup" id="finish-popup">
+        <h2>Congratulations!</h2>
+        <p>Your Pull Day is completed!</p>
+        <p><strong>Advanced Tip:</strong> Incorporate variations in your pulling movements to target different areas of the back and improve overall strength.</p>
+        <button class="button" id="go-home-button">Go Back to Home</button>
+    </div>
+
+    <script>
+        const exercises = [
+            {
+                name: "Scapular Pull-Ups",
+                sets: "3",
+                reps: "8",
+                note: "Focus: Activates scapular muscles, improving control and back engagement for pull-ups and other back exercises."
+            },
+            {
+                name: "Hollow Body Hang",
+                sets: "2",
+                reps: "30 seconds",
+                note: "Focus: Strengthens the upper back, core, and grip, preparing for advanced pulling movements."
+            },
+            {
+                name: "Front Lever Raise",
+                sets: "3",
+                reps: "5",
+                note: "Focus: Hits the lats, lower traps, and core, challenging full-body control and upper back strength."
+            },
+            {
+                name: "Body Weight Rows",
+                sets: "4",
+                reps: "8-10",
+                note: "Focus: Targets the rhomboids, mid-back, traps, and lats for back thickness and pulling strength."
+            },
+            {
+                name: "Pull-Ups",
+                sets: "3",
+                reps: "To failure",
+                note: "Focus: Maximizes lat and upper back development, improving pulling strength and endurance."
+            },
+            {
+                name: "Hanging Leg Raises",
+                sets: "3",
+                reps: "15",
+                note: "Focus: Engages the core and hip flexors, providing core stability that complements back strength."
+            },
+            {
+                name: "Crunches",
+                sets: "3",
+                reps: "15",
+                note: "Focus: Strengthens the upper abs for core stability during pulling exercises."
+            },
+            {
+                name: "Russian Twists",
+                sets: "3",
+                reps: "20",
+                note: "Focus: Strengthens the obliques, improving rotational stability and core balance."
+            },
+            {
+                name: "Plank",
+                sets: "3",
+                reps: "45-60 seconds",
+                note: "Focus: Improves overall core stability and endurance, helping with posture during pulling exercises."
+            },
+            {
+                name: "Bicycle Crunches",
+                sets: "3",
+                reps: "20",
+                note: "Focus: Works both upper abs and obliques for core definition and balance."
+            },
+            {
+                name: "Flutter Kicks",
+                sets: "3",
+                reps: "30-40 seconds",
+                note: "Focus: Targets the lower abs, complementing overall core strength for stability during bodyweight exercises."
+            }
+        ];
+
+        let currentExerciseIndex = 0;
+
+        function updateExercise() {
+            const currentExercise = exercises[currentExerciseIndex];
+            document.getElementById('exercise-name').textContent = currentExercise.name;
+            document.getElementById('sets-reps').textContent = `Sets: ${currentExercise.sets}, Reps: ${currentExercise.reps}`;
+            document.getElementById('exercise-note').textContent = currentExercise.note;
+
+            // Show or hide the Previous button based on the current index
+            document.getElementById('prev-button').style.display = currentExerciseIndex === 0 ? 'none' : 'inline-block';
+
+            // Show or hide the Finish button based on the current index
+            document.getElementById('finish-button').style.display = currentExerciseIndex === exercises.length - 1 ? 'inline-block' : 'none';
+
+            // Hide the Next button if it's the last exercise
+            document.getElementById('next-button').style.display = currentExerciseIndex === exercises.length - 1 ? 'none' : 'inline-block';
+        }
+
+        document.getElementById('next-button').addEventListener('click', () => {
+            currentExerciseIndex++;
+            if (currentExerciseIndex < exercises.length) {
+                updateExercise();
+            }
+        });
+
+        document.getElementById('prev-button').addEventListener('click', () => {
+            if (currentExerciseIndex > 0) {
+                currentExerciseIndex--;
+                updateExercise();
+            }
+        });
+
+        document.getElementById('finish-button').addEventListener('click', () => {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('finish-popup').style.display = 'block';
+        });
+
+        document.getElementById('go-home-button').addEventListener('click', () => {
+            window.location.href = 'index.html'; // Redirects to home page
+        });
+
+        // Initialize the first exercise
+        updateExercise();
+    </script>
+</body>
+</html>

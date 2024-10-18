@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalisthenics</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            position: relative; /* Allow positioning for water reminder */
+            overflow: hidden; /* Prevent scrolling while water reminder is visible */
+        }
+
+        header {
+            background-color: #b71c1c; /* Darker red */
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid #880e0e; /* Darker red border */
+            animation: slideDown 0.5s; /* Animation for header */
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .water-reminder {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #111;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s forwards; /* Animation for water reminder */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .quote {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            font-style: italic;
+            color: #333; /* Dark text for better contrast */
+        }
+
+        .close-button {
+            background-color: #b71c1c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover {
+            background-color: #e53935;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        #workout-days {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #e53935;
+        }
+
+        .day {
+            background-color: #222;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 1.3rem;
+        }
+
+        .day:hover {
+            background-color: #b71c1c; /* Darker red for hover */
+            transform: scale(1.05);
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #222; /* Darker color for better appearance */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+            z-index: 1000; /* Ensure it stays on top */
+        }
+
+        .nav-icon {
+            color: #fff;
+            text-align: center;
+            flex: 1;
+            text-decoration: none; /* No underline */
+        }
+
+        .nav-icon i {
+            font-size: 2rem; /* Larger icon size */
+        }
+
+        .nav-icon:hover {
+            color: #b71c1c; /* Change color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="spinner" class="spinner" style="display: none;"></div>
+
+    <header>
+        <div class="logo">
+            <h1>Kalisthenics</h1>
+        </div>
+        <p class="tagline">Your Ultimate Calisthenics Journey</p>
+    </header>
+
+    <main>
+        <section id="workout-days">
+            <h2>Workout Days</h2>
+            <div class="day" onclick="openWorkout('push')">Push Day (Monday & Thursday)</div>
+            <div class="day" onclick="openWorkout('pull')">Pull Day (Tuesday & Friday)</div>
+            <div class="day" onclick="openWorkout('legs')">Leg Day (Wednesday & Saturday)</div>
+        </section>
+    </main>
+
+    <!-- Water Reminder Popup -->
+    <div id="waterReminder" class="water-reminder" style="display: none;">
+        <p>Don't forget to drink your water!</p>
+        <p class="quote">"Water is life, and clean water means health."</p>
+        <button class="close-button" onclick="closeReminder()">Got it!</button>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <a href="user.html" class="nav-icon"><i class="fas fa-user"></i></a>
+        <a href="index.html" class="nav-icon"><i class="fas fa-home"></i></a>
+        <a href="stopwatch.html" class="nav-icon"><i class="fas fa-stopwatch"></i></a>
+    </nav>
+
+    <script>
+        function saveProgress(day) {
+            const completedWorkouts = JSON.parse(localStorage.getItem('completedWorkouts')) || [];
+            if (!completedWorkouts.includes(day)) {
+                completedWorkouts.push(day);
+                localStorage.setItem('completedWorkouts', JSON.stringify(completedWorkouts));
+            }
+        }
+
+        function openWorkout(day) {
+            saveProgress(day);
+            document.getElementById("spinner").style.display = "block"; // Show the spinner
+
+            // Redirect directly to the workout page after a short delay
+            setTimeout(() => {
+                document.getElementById("spinner").style.display = "none"; // Hide the spinner
+                window.location.href = day + ".html"; // Redirect to the workout page
+            }, 1000); // Adjust the delay as needed
+        }
+
+        function closeReminder() {
+            document.getElementById("waterReminder").style.display = "none"; // Hide the water reminder
+            document.body.style.overflow = 'auto'; // Enable scrolling again
+        }
+
+        // Show the water reminder if it's the user's first visit
+        if (!localStorage.getItem('waterReminderShown')) {
+            document.getElementById("waterReminder").style.display = "block"; // Show reminder
+            document.body.style.overflow = 'hidden'; // Disable scrolling while reminder is visible
+            localStorage.setItem('waterReminderShown', 'true'); // Set flag so it won't show again
+        }
+    </script>
+</body>
+</html>

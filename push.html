@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Push Day Workout</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Basic styles for the workout page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .exercise-container {
+            border: 2px solid #b71c1c;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #222;
+        }
+        h2 {
+            color: #e53935;
+            margin-bottom: 10px;
+        }
+        .sets-reps {
+            font-size: 1.5rem;
+            margin: 15px 0;
+        }
+        .note {
+            font-size: 1rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #b71c1c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            margin: 5px; /* Margin for spacing between buttons */
+        }
+        .button:hover {
+            background-color: #880e0e;
+        }
+        .back-button {
+            margin-top: 20px;
+            display: inline-block;
+        }
+        /* Styles for the finish pop-up */
+        .finish-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 2px solid #b71c1c;
+            border-radius: 10px;
+            padding: 20px;
+            z-index: 1000;
+        }
+        .finish-popup h2 {
+            color: #e53935;
+            margin-bottom: 10px;
+        }
+        .finish-popup button {
+            margin-top: 10px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="exercise-container">
+        <h2 id="exercise-name">Decline Push-Ups</h2>
+        <div class="sets-reps" id="sets-reps">Sets: 4, Reps: 10-12</div>
+        <div class="note" id="exercise-note">Focus: Emphasizes upper chest. Keep your core tight and maintain perfect form.</div>
+        <button class="button" id="prev-button" style="display: none;">Previous</button>
+        <button class="button" id="next-button">Next</button>
+        <button class="button" id="finish-button" style="display: none;">Finish</button>
+        <a href="index.html" class="back-button"><button class="button">Back to Home</button></a>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="finish-popup" id="finish-popup">
+        <h2>Congratulations!</h2>
+        <p>Your Push Day is completed!</p>
+        <p><strong>Advanced Tip:</strong> Incorporate progressive overload by gradually increasing the difficulty of your exercises to continue making gains.</p>
+        <button class="button" id="go-home-button">Go Back to Home</button>
+    </div>
+
+    <script>
+        const exercises = [
+            {
+                name: "Decline Push-Ups",
+                sets: "4",
+                reps: "10-12",
+                note: "Focus: Emphasizes upper chest. Keep your core tight and maintain perfect form."
+            },
+            {
+                name: "Body Weight Dips",
+                sets: "4",
+                reps: "8-10",
+                note: "Focus: Targets lower chest and triceps. Ensure full range of motion."
+            },
+            {
+                name: "Hindu Push-Ups",
+                sets: "3",
+                reps: "8-10",
+                note: "Focus: Works shoulders, chest, and triceps with an extended range of motion."
+            },
+            {
+                name: "Diamond Push-Ups",
+                sets: "3",
+                reps: "10-12",
+                note: "Focus: Emphasizes triceps and inner chest."
+            },
+            {
+                name: "Pike Push-Ups",
+                sets: "4",
+                reps: "8-10",
+                note: "Focus: Great for shoulder development and upper chest."
+            },
+            {
+                name: "Pseudo Planche Lean",
+                sets: "3",
+                reps: "10 seconds",
+                note: "Focus: Strengthens shoulders, chest, and triceps for advanced bodyweight movements."
+            },
+            {
+                name: "Side Plank",
+                sets: "3",
+                reps: "30 seconds each side",
+                note: "Focus: Core stability, crucial for overall push movements."
+            },
+            {
+                name: "Wall Handstand Hold",
+                sets: "3",
+                reps: "20-30 seconds",
+                note: "Focus: Shoulder strength and endurance."
+            },
+            {
+                name: "Hollow Body Hold",
+                sets: "3",
+                reps: "Max Hold",
+                note: "Focus: Core strength to stabilize your body during push movements."
+            }
+        ];
+
+        let currentExerciseIndex = 0;
+
+        function updateExercise() {
+            const currentExercise = exercises[currentExerciseIndex];
+            document.getElementById('exercise-name').textContent = currentExercise.name;
+            document.getElementById('sets-reps').textContent = `Sets: ${currentExercise.sets}, Reps: ${currentExercise.reps}`;
+            document.getElementById('exercise-note').textContent = currentExercise.note;
+
+            // Show or hide the Previous button based on the current index
+            document.getElementById('prev-button').style.display = currentExerciseIndex === 0 ? 'none' : 'inline-block';
+
+            // Show or hide the Finish button based on the current index
+            document.getElementById('finish-button').style.display = currentExerciseIndex === exercises.length - 1 ? 'inline-block' : 'none';
+
+            // Hide the Next button if it's the last exercise
+            document.getElementById('next-button').style.display = currentExerciseIndex === exercises.length - 1 ? 'none' : 'inline-block';
+        }
+
+        document.getElementById('next-button').addEventListener('click', () => {
+            currentExerciseIndex++;
+            if (currentExerciseIndex < exercises.length) {
+                updateExercise();
+            }
+        });
+
+        document.getElementById('prev-button').addEventListener('click', () => {
+            if (currentExerciseIndex > 0) {
+                currentExerciseIndex--;
+                updateExercise();
+            }
+        });
+
+        document.getElementById('finish-button').addEventListener('click', () => {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('finish-popup').style.display = 'block';
+        });
+
+        document.getElementById('go-home-button').addEventListener('click', () => {
+            window.location.href = 'index.html'; // Redirects to home page
+        });
+
+        // Initialize the first exercise
+        updateExercise();
+    </script>
+</body>
+</html>

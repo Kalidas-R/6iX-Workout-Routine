@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Max Values Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Latest version -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        canvas {
+            max-width: 1000px; /* Increased width */
+            margin: 0 auto;
+            display: block;
+            height: 500px; /* Increased height */
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="user.html">User Page</a></li>
+            <li><a href="push.html">Push Day</a></li>
+            <li><a href="pull.html">Pull Day</a></li>
+            <li><a href="leg.html">Leg Day</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Your Max Values Graph</h2>
+        <canvas id="maxValuesChart"></canvas>
+        <button onclick="goBack()">Back to User Page</button>
+    </div>
+
+    <script>
+        // Example historical data for demonstration purposes
+        const userMaxLogs = [
+            { week: 'Week 1', pushUps: 10, pullUps: 5, squats: 20 },
+            { week: 'Week 2', pushUps: 12, pullUps: 6, squats: 22 },
+            { week: 'Week 3', pushUps: 15, pullUps: 7, squats: 25 },
+            { week: 'Week 4', pushUps: 13, pullUps: 8, squats: 30 },
+            { week: 'Week 5', pushUps: 14, pullUps: 7, squats: 28 },
+            { week: 'Week 6', pushUps: 16, pullUps: 9, squats: 35 }
+        ];
+
+        // Prepare data for the chart
+        const labels = userMaxLogs.map(log => log.week);
+        const pushUpsData = userMaxLogs.map(log => log.pushUps);
+        const pullUpsData = userMaxLogs.map(log => log.pullUps);
+        const squatsData = userMaxLogs.map(log => log.squats);
+
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Max Push-Ups',
+                    data: pushUpsData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1,
+                    fill: true
+                },
+                {
+                    label: 'Max Pull-Ups',
+                    data: pullUpsData,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 1,
+                    fill: true
+                },
+                {
+                    label: 'Max Squats',
+                    data: squatsData,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderWidth: 1,
+                    fill: true
+                }
+            ]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Your Max Values Over Time'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Max Reps'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Weeks'
+                        }
+                    }
+                }
+            },
+        };
+
+        // Create the chart
+        const maxValuesChart = new Chart(
+            document.getElementById('maxValuesChart'),
+            config
+        );
+
+        // Function to go back to the user page
+        function goBack() {
+            window.location.href = "user.html";
+        }
+    </script>
+</body>
+</html>
