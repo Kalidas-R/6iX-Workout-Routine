@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+
+        /* Disable text selection */
+        body {
+            -webkit-user-select: none; /* Chrome, Safari */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* IE/Edge */
+            user-select: none;         /* Non-prefixed version, currently supported by most browsers */
+        }
+    
         /* General Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -198,6 +207,14 @@
             document.body.style.overflow = 'hidden'; // Disable scrolling while reminder is visible
             localStorage.setItem('waterReminderShown', 'true'); // Set flag so it won't show again
         }
+        document.addEventListener('contextmenu', function(e) {
+        e.preventDefault(); // Disable right-click
+    });
+        document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+            e.preventDefault(); // Disable Ctrl+C or Command+C
+        }
+    });
     </script>
 </body>
 </html>
